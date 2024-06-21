@@ -81,8 +81,7 @@ def label_instances_from_mask(mask: np.array, min_size: int = 50) -> np.ndarray:
 
     # Assign labels to the distinct regions
     output = measure.label(mask)
-    assert output.max() < 256, f'Increase bit depth of our masks. This image has {output.max() + 1} objects'
-    return np.array(output, dtype=np.uint8)
+    return np.array(output, dtype=np.uint16)
 
 
 def convert_to_per_particle(per_frame: pd.DataFrame, position_col: str = 'positions', exclude_column: str | None = None) -> Iterator[pd.DataFrame]:
